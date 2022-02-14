@@ -26,7 +26,7 @@ namespace SG2022.Droid
             {
                 return;
             }
-            mView.Background = ContextCompat.GetDrawable(mView.Context, Resource.Drawable.carbon_fibre);
+            mView.Background = ContextCompat.GetDrawable(mView.Context, Resource.Drawable.drawable);
         }
     }
 }
