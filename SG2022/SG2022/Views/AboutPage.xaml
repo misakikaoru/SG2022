@@ -47,6 +47,7 @@
                         TextColor="White" />
             </StackLayout>
         </ScrollView>
+		<Button VerticalOptions="Center" Text="Tweet" Command="{Binding TweetCommand}"/>
     </Grid>
 
 </ContentPage>
