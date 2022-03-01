@@ -1,6 +1,9 @@
 ﻿using CoreTweet;
+using Newtonsoft.Json;
+using SG2022.Models;
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
@@ -17,11 +20,27 @@ namespace SG2022.ViewModels
 			Title = "About";
 			OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
 			TweetPinCommand = new Command(OnTweetPinClicked);
+			ReadJsonCommand = new Command(OnReadJsonClicked);
 			Url = session.AuthorizeUri.AbsoluteUri;
+		}
+
+		private void OnReadJsonClicked(object obj)
+		{
+			try
+			{
+				var fileFullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "JsonData/Setting.json");
+				var jsonText = File.ReadAllText(fileFullPath);
+				var json = JsonConvert.DeserializeObject<Item>(jsonText);
+			}
+			catch (Exception ex)
+			{
+				var error = ex.Message;
+			}
 		}
 
 		public ICommand OpenWebCommand { get; }
 		public Command TweetCommand { get; }
+		public Command ReadJsonCommand { get; }
 		public Command TweetPinCommand { get; }
 		private WebViewSource url;
 		public WebViewSource Url { get => url; set => SetProperty(ref url, value); }

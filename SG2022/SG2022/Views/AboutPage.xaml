@@ -25,6 +25,7 @@
 				<WebView Source="{Binding Url}" HeightRequest="500"></WebView>
 				<Entry Text="{Binding PinCode}" Keyboard="Numeric"/>
 				<Button VerticalOptions="Center" Text="TweetWithPin" Command="{Binding TweetPinCommand}"/>
+				<Button VerticalOptions="Center" Text="ReadJson" Command="{Binding ReadJsonCommand}"/>
 			</StackLayout>
         </ScrollView>
     </Grid>
