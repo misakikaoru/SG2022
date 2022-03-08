@@ -26,15 +26,18 @@ namespace SG2022.ViewModels
 
 		private void OnReadJsonClicked(object obj)
 		{
+			var fileFullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "JsonData/Setting.json");
+			Log = fileFullPath;
 			try
 			{
-				var fileFullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "JsonData/Setting.json");
 				var jsonText = File.ReadAllText(fileFullPath);
+				Log = jsonText;
 				var json = JsonConvert.DeserializeObject<Item>(jsonText);
 			}
 			catch (Exception ex)
 			{
 				var error = ex.Message;
+				Log = fileFullPath + "\r\n" + error;
 			}
 		}
 
@@ -46,6 +49,8 @@ namespace SG2022.ViewModels
 		public WebViewSource Url { get => url; set => SetProperty(ref url, value); }
 		private string pinCode;
 		public string PinCode { get => pinCode; set => SetProperty(ref pinCode, value); }
+		private string log;
+		public string Log { get => log; set => SetProperty(ref log, value); }
 
 		//API key
 		static string ConsumerKey = "";
